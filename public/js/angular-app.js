@@ -6,7 +6,7 @@ app.run(function ($rootScope) {
         .when("/", {
             templateUrl: "templates/index.html"
         })
-        .when("/details", {
+        .when("/details/:id", {
             templateUrl: "templates/details.html"
         })
         .when("/checkout", {
