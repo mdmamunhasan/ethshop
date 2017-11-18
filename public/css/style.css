@@ -661,6 +661,7 @@ figure.effect-bubba:hover p,figure.effect-bubba:hover h2 {
 }
 .product-one:nth-child(2){
 	margin-top:30px;
+	margin-bottom: 30px
 }
 img.zoom-img {
     -webkit-transform: scale(1, 1);
