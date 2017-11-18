@@ -2,28 +2,37 @@
 <html lang="en-US">
 <head>
     <title>Luxury Watches A Ecommerce Category Flat Bootstrap Resposive Website Template | Home :: w3layouts</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
     <!--theme-style-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
+
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="js/jquery-1.11.0.min.js"></script>
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
     <!--start-menu-->
-    <script src="js/simpleCart.min.js"> </script>
-    <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/simpleCart.min.js"></script>
+    <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all"/>
     <script type="text/javascript" src="js/memenu.js"></script>
-    <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+    <script>$(document).ready(function () {
+        $(".memenu").memenu();
+    });</script>
     <!--dropdown-->
     <script src="js/jquery.easydropdown.js"></script>
+    <script src="js/imagezoom.js"></script>
+    <script defer src="js/jquery.flexslider.js"></script>
 
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.js"></script>
-
-    <script src="js/imagezoom.js"></script>
-    <script defer src="js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 </head>
 <body ng-app="myApp">
 
@@ -31,7 +40,7 @@
 
 <!--start-logo-->
 <div class="logo">
-    <a href="/"><h1>Luxury Watches</h1></a>
+    <a href="/"><h1>{{site_title}}</h1></a>
 </div>
 <!--start-logo-->
 
@@ -41,7 +50,7 @@
 
 <div ng-include="'templates/elements/footer.html'"></div>
 
-<script src="js/config.app.js"></script>
+<script src="js/app.ng.js"></script>
 <script src="js/directives/flexslider.js"></script>
 <script src="js/controllers/app.js"></script>
 
