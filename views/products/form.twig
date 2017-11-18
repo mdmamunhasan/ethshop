@@ -1,0 +1,140 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+    <script src="https://wzrd.in/standalone/buffer"></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+            integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-12 content">
+        <h1>{{ title }}</h1>
+        <hr/>
+        <form action="/products/{{ action }}" method="post" class="row">
+            <div class="col-md-8">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#content">Content</a></li>
+                    <li><a data-toggle="tab" href="#attachments">Attachments</a></li>
+                </ul>
+                <div class="tab-content">
+                    <p>&nbsp;</p>
+                    <div id="content" class="tab-pane fade in active">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title" required="required"
+                                   value="{{ product.title|e }}"/>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>SKU</label>
+                                <input type="number" class="form-control" name="sku" required="required"
+                                       value="{{ product.sku|e }}"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Model</label>
+                                <input type="text" class="form-control" name="model" value="{{ product.model|e }}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea rows="5" class="form-control" name="details"
+                                      required="required">{{ product.details|e }}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Unit Price</label>
+                                <input type="number" class="form-control" name="price" required="required"
+                                       value="{{ product.price|e }}"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Stock</label>
+                                <input type="number" class="form-control" name="stock" required="required"
+                                       value="{{ product.stock|e }}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Brand</label>
+                                <select class="form-control" name="brand" required="required">
+                                    <option value="">Please select brand</option>
+                                    <option value="kurtas"
+                                            {% if product.brand|e == 'kurtas' %}selected="selected"{% endif %}>Kurtas
+                                    </option>
+                                    <option value="sonata"
+                                            {% if product.brand|e == 'sonata' %}selected="selected"{% endif %}>Sonata
+                                    </option>
+                                    <option value="titan"
+                                            {% if product.brand|e == 'titan' %}selected="selected"{% endif %}>Titan
+                                    </option>
+                                    <option value="casio"
+                                            {% if product.brand|e == 'casio' %}selected="selected"{% endif %}>Casio
+                                    </option>
+                                    <option value="omax"
+                                            {% if product.brand|e == 'omax' %}selected="selected"{% endif %}>Omax
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Category</label>
+                                <select class="form-control" name="category" required="required">
+                                    <option value="">Please select category</option>
+                                    <option value="analog-watch"
+                                            {% if product.category|e == 'analog-watch' %}selected="selected"{% endif %}>
+                                        Analog Watch
+                                    </option>
+                                    <option value="digital-watch"
+                                            {% if product.category|e == 'digital-watch' %}selected="selected"{% endif %}>
+                                        Digital Watch
+                                    </option>
+                                    <option value="smart-watch"
+                                            {% if product.category|e == 'smart-watch' %}selected="selected"{% endif %}>
+                                        Smart Watch
+                                    </option>
+                                    <option value="smart-band"
+                                            {% if product.category|e == 'smart-band' %}selected="selected"{% endif %}>
+                                        Smart
+                                        Band
+                                    </option>
+                                    <option value="wall-watch"
+                                            {% if product.category|e == 'wall-watch' %}selected="selected"{% endif %}>
+                                        Wall
+                                        Watch
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="attachments" class="tab-pane fade in">
+                        <p>Upload Images</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <button type="submit" id="save_button" class="btn btn-primary">Save Product</button>
+                    <a href="/products" class="btn btn-danger">Cancel</a>
+                    <p>&nbsp;</p>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="is_published"
+                                      {% if product.is_published|e == 1 %}checked="checked"{% endif %}/> Publish This
+                            Product</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Feature Image</label>
+                    <input id="image_chooser" type="file"/>
+                    <input type="hidden" id="input_image" name="image"/>
+                </div>
+                <div class="thumbnail">
+                    {% if product.image|e != null %}
+                        <img id="feature_image" class="img-responsive" src="{{ product.image }}" alt="{{ product.image }}"/>
+                    {% else %}
+                        <img id="feature_image" class="img-responsive" src="/images/no-image.png" alt=""/>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

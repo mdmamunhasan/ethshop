@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <div class="col-md-12 content">
+        <h1>{{ title }}</h1>
+        <hr/>
+        <a href="/products/add" class="btn btn-primary">Add New Product</a>
+        <p>&nbsp</p>
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Title</th>
+                <th>SKU</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.title|e }}</td>
+                    <td>{{ product.sku|e }}</td>
+                    <td>{{ product.model|e }}</td>
+                    <td>{{ product.price|e }}</td>
+                    <td>{{ product.stock|e }}</td>
+                    <td>
+                        <a href="/products/edit/{{ product.id|e }}">Edit</a>
+                        <a href="/products/delete/{{ product.id|e }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
