@@ -120,21 +120,19 @@ App = {
     },
 
     getUserOrderList: function (address, callback) {
-        setTimeout(function () {
-            var userAddress = address || App.account, shopInstance;
-            App.contracts.Shop.deployed().then(function (instance) {
-                shopInstance = instance;
-                return shopInstance.getUserOrderIds.call(userAddress);
-            }).then(function (data) {
-                data.forEach(function (orderId) {
-                    orderId = parseInt(orderId, 10);
-                    if (orderId) {
-                        return App.getOrderData(orderId, callback);
-                    }
-                });
-            }).catch(function (err) {
-                console.log(err.message);
+        var userAddress = address || App.account, shopInstance;
+        App.contracts.Shop.deployed().then(function (instance) {
+            shopInstance = instance;
+            return shopInstance.getUserOrderIds.call(userAddress);
+        }).then(function (data) {
+            data.forEach(function (orderId) {
+                orderId = parseInt(orderId, 10);
+                if (orderId) {
+                    return App.getOrderData(orderId, callback);
+                }
             });
-        }, 1000);
+        }).catch(function (err) {
+            console.log(err.message);
+        });
     }
 }
