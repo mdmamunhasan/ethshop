@@ -50,6 +50,10 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
         });
 
         App.placeOrder(orderData, function (result) {
+            $rootScope.shopping_cart = {
+                total_price: 0,
+                cart_items: []
+            };
             alert("Order Placed");
         });
     };
