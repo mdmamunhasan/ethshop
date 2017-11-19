@@ -51,9 +51,9 @@ contract Shop is owned {
         selfdestruct(msg.sender);
     }
 
-    function getOrder(uint orderId) public constant returns (address, uint[], uint[], uint[], uint, uint) {
+    function getOrder(uint orderId) public constant returns (address, string, uint, string, uint[], uint[], uint[], uint, uint, bool) {
         Order storage order = orderList[orderId];
-        return (order.customer, order.name, order.phone, order.city, order.skus, order.quantities, order.prices, order.totalPrice, order.created, isProcessed);
+        return (order.customer, order.name, order.phone, order.city, order.skus, order.quantities, order.prices, order.totalPrice, order.created, order.isProcessed);
     }
 
     function getOrderIds() public constant returns (uint[]) {
