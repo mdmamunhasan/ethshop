@@ -2,6 +2,10 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.run(function ($rootScope, $http, $location) {
 
     $rootScope.site_title = "LUXURY WATCHES";
+    $rootScope.shopping_cart = {
+        total_price: 0,
+        cart_items: {}
+    };
 
     $rootScope.keyword = "";
     $rootScope.products = [];
