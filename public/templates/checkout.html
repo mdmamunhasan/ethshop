@@ -17,17 +17,14 @@
                                 </tr>
                                 <tr ng-repeat="cart_item in shopping_cart.cart_items">
                                     <td>{{cart_item.sku}}</td>
-                                    <th>{{cart_item.title}}</th>
-                                    <th><img stc="{{cart_item.image}}" alt="{{cart_item.title}}"/></th>
+                                    <td>{{cart_item.title}}</td>
+                                    <td><img stc="{{cart_item.image}}" alt="{{cart_item.title}}"/></td>
                                     <td>{{cart_item.quantity}}</td>
                                     <td>{{cart_item.price}}</td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <th>&nbsp;</th>
-                                    <td>&nbsp;</td>
-                                    <td>{{shopping_cart.total_price}}</td>
+                                    <th colspan="4" class="text-right">Total Price</th>
+                                    <th>{{shopping_cart.total_price}}</th>
                                 </tr>
                             </table>
                         </li>
