@@ -13,17 +13,17 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
     $scope.placeOrder = function ($event) {
         $event.preventDefault();
 
-        if ($scope.order.name == "") {
+        if ($scope.customer.name == "") {
             alert("Name cannot be empty");
             return;
         }
 
-        if ($scope.order.phone == "") {
+        if ($scope.customer.phone == "") {
             alert("Phone cannot be empty");
             return;
         }
 
-        if ($scope.order.city == "") {
+        if ($scope.customer.city == "") {
             alert("City cannot be empty");
             return;
         }
