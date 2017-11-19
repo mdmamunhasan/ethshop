@@ -49,8 +49,6 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
             orderData.prices.push(item.price);
         });
 
-        console.log(orderData);
-
         App.placeOrder(orderData, function (result) {
             alert("Order Placed");
         });

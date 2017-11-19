@@ -1,6 +1,8 @@
 var app = angular.module("myApp", ["ngRoute"]);
 app.run(function ($rootScope, $http, $location) {
-    App.init();
+    App.init(function(){
+        console.log("Web3 Initialized");
+    });
 
     $rootScope.site_title = "LUXURY WATCHES";
     $rootScope.shopping_cart = {

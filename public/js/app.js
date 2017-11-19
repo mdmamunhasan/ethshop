@@ -1,6 +1,7 @@
 App = {
     web3Provider: null,
     account: null,
+    contracts: {},
     constants: {
         ether: 0,
         ipfsBase: 'https://ipfs.io/ipfs/',
