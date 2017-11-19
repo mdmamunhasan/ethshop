@@ -32,5 +32,11 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
             alert("Cart cannot be empty");
             return;
         }
+
+        var orderData = {};
+
+        App.placeOrder(orderData, function(result){
+            alert("Order Placed");
+        });
     };
 });
