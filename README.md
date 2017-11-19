@@ -45,3 +45,6 @@ After change smart contract contracts/Journal.sol
     
 Here sub-directory src contains the dapp implementation. 
 public/js/app.js contains the HttpProvider for geth rpc for web3.
+
+    bash copy.sh
+    nodemon
