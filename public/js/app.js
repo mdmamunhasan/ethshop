@@ -31,7 +31,7 @@ App = {
         $.getJSON('Shop.json', function (data) {
             // Get the necessary contract artifact file and instantiate it with truffle-contract.
             var ShopArtifact = data;
-            App.contracts.Shop = TruffleContract(JournalArtifact);
+            App.contracts.Shop = TruffleContract(ShopArtifact);
             // Set the provider for our contract.
             App.contracts.Shop.setProvider(App.web3Provider);
             return callback();
