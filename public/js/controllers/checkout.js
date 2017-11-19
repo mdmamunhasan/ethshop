@@ -32,7 +32,5 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
             alert("Cart cannot be empty");
             return;
         }
-
-
     };
 });
