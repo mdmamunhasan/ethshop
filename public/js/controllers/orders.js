@@ -1,10 +1,10 @@
 app.controller('ordersCtrl', function ($scope) {
-    $scope.orders = [];
+    $scope.orderList = [];
 
     App.getUserOrderList(null, function (result) {
         if(result.orderId){
-            $scope.orders.push(result);
-            console.log($scope.orders);
+            $scope.orderList.push(result);
+            console.log($scope.orderList);
         }
     });
 });
