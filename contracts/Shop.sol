@@ -66,7 +66,7 @@ contract Shop is owned {
 
         uint totalPrice = 0;
         for (uint i = 0; i < skus.length; i++) {
-            totalPrice += prices[i];
+            totalPrice += prices[i] * 1 ether;
         }
 
         require(msg.value == totalPrice);
