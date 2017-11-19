@@ -79,7 +79,9 @@ App = {
             shopInstance = instance;
             return shopInstance.getOrder.call(orderId);
         }).then(function (data) {
+
             var orderData = {
+                orderId: orderId,
                 customer: data[0],
                 name: data[1],
                 phone: data[2],
@@ -102,7 +104,7 @@ App = {
     getOrderList: function (callback) {
         var shopInstance;
 
-        App.contracts.shopInstance.deployed().then(function (instance) {
+        App.contracts.Shop.deployed().then(function (instance) {
             shopInstance = instance;
             return shopInstance.getOrderIds.call();
         }).then(function (data) {
@@ -118,20 +120,21 @@ App = {
     },
 
     getUserOrderList: function (address, callback) {
-        var userAddress = address || App.account, shopInstance;
-
-        App.contracts.shopInstance.deployed().then(function (instance) {
-            shopInstance = instance;
-            return shopInstance.getUserOrderIds.call(userAddress);
-        }).then(function (data) {
-            return data.forEach(function (orderId) {
-                orderId = parseInt(orderId, 10);
-                if (orderId) {
-                    return getOrderData(orderId, callback);
-                }
+        setTimeout(function () {
+            var userAddress = address || App.account, shopInstance;
+            App.contracts.Shop.deployed().then(function (instance) {
+                shopInstance = instance;
+                return shopInstance.getUserOrderIds.call(userAddress);
+            }).then(function (data) {
+                data.forEach(function (orderId) {
+                    orderId = parseInt(orderId, 10);
+                    if (orderId) {
+                        return App.getOrderData(orderId, callback);
+                    }
+                });
+            }).catch(function (err) {
+                console.log(err.message);
             });
-        }).catch(function (err) {
-            console.log(err.message);
-        });
+        }, 1000);
     }
 }

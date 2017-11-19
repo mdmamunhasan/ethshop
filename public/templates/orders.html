@@ -2,22 +2,22 @@
     <div class="container">
         <table class="table table-bordered table-responsive">
             <tr>
-                <th>SKU</th>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>OrderId</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Total Price</th>
+                <th>Created</th>
+                <th>isProcessed</th>
             </tr>
-            <tr ng-repeat="cart_item in shopping_cart.cart_items">
-                <td>{{cart_item.sku}}</td>
-                <td>{{cart_item.title}}</td>
-                <td><img stc="{{cart_item.image}}" alt="{{cart_item.title}}"/></td>
-                <td>{{cart_item.quantity}}</td>
-                <td>{{cart_item.price}}</td>
-            </tr>
-            <tr>
-                <th colspan="4" class="text-right">Total Price</th>
-                <th>{{shopping_cart.total_price}}</th>
+            <tr ng-repeat="orderItem in orders">
+                <td>{{orderItem.orderId}}</td>
+                <td>{{orderItem.name}}</td>
+                <td>{{orderItem.phone}}</td>
+                <td>{{orderItem.city}}</td>
+                <td>{{orderItem.totalPrice}}</td>
+                <td>{{orderItem.created}}</td>
+                <td>{{orderItem.isProcessed}}</td>
             </tr>
         </table>
     </div>
