@@ -84,13 +84,13 @@ App = {
                 orderId: orderId,
                 customer: data[0],
                 name: data[1],
-                phone: data[2],
+                phone: parseInt(data[2], 10),
                 city: data[3],
                 skus: data[4],
                 quantities: data[5],
                 prices: data[6],
-                totalPrice: data[7],
-                created: data[8],
+                totalPrice: parseInt(web3.fromWei(data[7], 'ETHER'), 10),
+                created: parseInt(data[8], 10),
                 isProcessed: data[9]
             };
 
