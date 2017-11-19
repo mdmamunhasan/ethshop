@@ -36,8 +36,27 @@
                         <li>
                             <p>&nbsp;</p>
                             <form ng-submit="placeOrder($event)">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" ng-model="order.name"
+                                               required="required"/>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Phone Number</label>
+                                        <input type="number" class="form-control" ng-model="order.phone"
+                                               required="required"/>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" ng-model="order.city"
+                                               required="required"/>
+                                    </div>
+                                </div>
                                 <div class="form-group">
-                                    <button type="submit" id="save_button" class="btn btn-primary">Place Order</button>
+                                    <button type="submit" id="save_button" class="btn btn-primary pull-right">Place
+                                        Order
+                                    </button>
                                 </div>
                             </form>
                         </li>

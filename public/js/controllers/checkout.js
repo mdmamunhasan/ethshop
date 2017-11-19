@@ -1,4 +1,4 @@
-app.controller('checkoutCtrl', function ($scope) {
+app.controller('checkoutCtrl', function ($scope, $rootScope) {
     $scope.togglePane = function ($event) {
         $event.preventDefault();
 
@@ -11,6 +11,26 @@ app.controller('checkoutCtrl', function ($scope) {
     };
 
     $scope.placeOrder = function ($event) {
+        if ($scope.order.name == "") {
+            alert("Name cannot be empty");
+            return;
+        }
+
+        if ($scope.order.phone == "") {
+            alert("Phone cannot be empty");
+            return;
+        }
+
+        if ($scope.order.city == "") {
+            alert("City cannot be empty");
+            return;
+        }
+
+        if ($rootScope.shopping_cart.total_price == 0) {
+            alert("Cart cannot be empty");
+            return;
+        }
+
         $event.preventDefault();
     };
 });
