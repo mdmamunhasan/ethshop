@@ -54,6 +54,9 @@ app.run(function ($rootScope, $http, $location) {
         .when("/checkout", {
             templateUrl: "templates/checkout.html"
         })
+        .when("/orders", {
+            templateUrl: "templates/orders.html"
+        })
         .when("/contact", {
             templateUrl: "templates/contact.html"
         });
