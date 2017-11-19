@@ -32,6 +32,14 @@ app.run(function ($rootScope, $http, $location) {
         }
     }
 
+    $rootScope.emptyCart = function ($event) {
+        $event.preventDefault();
+        $rootScope.shopping_cart = {
+            total_price: 0,
+            cart_items: []
+        };
+    }
+
 }).config(function ($routeProvider) {
     $routeProvider
         .when("/", {
