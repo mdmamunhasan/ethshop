@@ -15,4 +15,16 @@ router.get('/products', function (req, res, next) {
     });
 });
 
+router.get('/product/:id', function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    modelProduct.get(req.params.id, function (result) {
+        if (result.status) {
+            return res.json({status: 200, data: result.data});
+        }
+        else {
+            return res.json({status: 205, data: result.data});
+        }
+    });
+});
+
 module.exports = router;

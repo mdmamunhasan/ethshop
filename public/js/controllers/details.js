@@ -1,4 +1,16 @@
-app.controller('detailsCtrl', function ($scope) {
+app.controller('detailsCtrl', function ($scope, $http, $location) {
+    $scope.product = {};
+
+    var productId = $location.absUrl().split('/')[5];
+    $http.get("http://localhost:3000/api/product/" + productId).then(function (response) {
+        if (response.data.status == 200) {
+            $scope.product = response.data.data;
+        }
+        else {
+            console.log(response.data);
+        }
+    });
+
     $scope.togglePane = function ($event) {
         $event.preventDefault();
 

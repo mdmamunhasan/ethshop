@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-7 single-top-right">
                         <div class="single-para simpleCart_shelfItem">
-                            <h2>Lorem Ipsum</h2>
+                            <h2>{{product.title}}</h2>
                             <div class="star-on">
                                 <ul class="star-footer">
                                     <li><a href="#"><i> </i></a></li>
@@ -39,27 +39,23 @@
                                 <div class="clearfix"></div>
                             </div>
 
-                            <h5 class="item_price">$ 95.00</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                consequat.</p>
+                            <h5 class="item_price">$ {{product.price}}</h5>
+                            <p>{{product.details}}</p>
                             <div class="available">
                                 <ul>
-                                    <li>Color
-                                        <select>
+                                    <li>
+                                        <label class="pull-left">Color</label>
+                                        <select class="pull-right">
                                             <option>Silver</option>
                                             <option>Black</option>
                                             <option>Dark Black</option>
                                             <option>Red</option>
-                                        </select></li>
-                                    <li class="size-in">Size<select>
-                                        <option>Large</option>
-                                        <option>Medium</option>
-                                        <option>small</option>
-                                        <option>Large</option>
-                                        <option>small</option>
-                                    </select></li>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label class="pull-left">Quantity</label>
+                                        <input type="number" value="1" class="pull-right"/>
+                                    </li>
                                     <div class="clearfix"></div>
                                 </ul>
                             </div>
@@ -67,7 +63,7 @@
                                 <li><span>TAG</span>
                                     <span class="women1">: Women,</span></li>
                                 <li><span>SKU</span>
-                                    <span class="women1">: CK09</span></li>
+                                    <span class="women1">: {{product.sku}}</span></li>
                             </ul>
                             <a href="#" class="add-cart item_add" ng-click="addToCart($event)">ADD TO CART</a>
 
@@ -168,7 +164,7 @@
                                     </h4>
                                 </div>
                                 <div class="srch">
-                                    <span>-50%</span>
+                                    <span>Stock {{product.stock}}</span>
                                 </div>
                             </div>
                         </div>

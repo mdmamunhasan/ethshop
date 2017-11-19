@@ -1645,16 +1645,22 @@ ul.star-footer li i {
     width: 100%;
     margin: 0.5em 0;
 }
+
+.available ul li label{
+	line-height: 50px;
+}
+
+.available ul li input,
 .available ul li select {
     outline: none;
     padding: 12px;
     border: none;
     background: #eeeeee;
-    width: 77%;
+    width: 70%;
     margin-left: 13%;
     cursor: pointer;
 }
-.available ul li.size-in select {
+.available ul li.size-in input {
     margin-left: 16%;
 }
 ul.tag-men {
