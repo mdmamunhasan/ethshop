@@ -10,7 +10,11 @@ connection.connect();
 
 module.exports = {
     all: function (params, callback) {
-        connection.query('SELECT * FROM products', function (error, results, fields) {
+        var sql = "SELECT * FROM products";
+        if (params.search) {
+            sql += " WHERE title LIKE '%" + params.search + "%'";
+        }
+        connection.query(sql, function (error, results, fields) {
             if (error) {
                 return callback({status: 0, data: error});
             }
