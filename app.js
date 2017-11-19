@@ -9,6 +9,7 @@ var passport = require('passport');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn('/login');
 var expressValidator = require('express-validator');
 
+var api = require('./routes/api');
 var index = require('./routes/index');
 var orders = require('./routes/orders');
 var products = require('./routes/products');
@@ -42,6 +43,7 @@ app.all(restricted_area, ensureLoggedIn, function (req, res, next) {
 });
 
 app.use('/', index);
+app.use('/api', api);
 app.use('/orders', orders);
 app.use('/products', products);
 
