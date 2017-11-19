@@ -8,11 +8,17 @@ app.controller('detailsCtrl', function ($scope) {
 
         $('.menu_drop > li > ul').addClass('hide');
 
-        if(current){
+        if (current) {
             $(sibling).removeClass('hide');
         }
-        else{
+        else {
             $(sibling).addClass('hide');
         }
     };
+
+    $scope.addToCart = function ($event) {
+        $event.preventDefault();
+
+        alert('Product Added To Cart.');
+    }
 });
