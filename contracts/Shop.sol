@@ -23,16 +23,16 @@ contract Shop is owned {
     uint orderCount = 0;
 
     struct Order {
-        address customer;
-        string name;
-        uint phone;
-        string city;
-        uint[] skus;
-        uint[] quantities;
-        uint[] prices;
-        uint totalPrice;
-        uint created;
-        bool isProcessed;
+    address customer;
+    string name;
+    uint phone;
+    string city;
+    uint[] skus;
+    uint[] quantities;
+    uint[] prices;
+    uint totalPrice;
+    uint created;
+    bool isProcessed;
     }
 
     mapping (uint => Order) public orderList;
@@ -66,7 +66,7 @@ contract Shop is owned {
 
     function checkout(string name, uint phone, string city, uint[] skus, uint[] quantities, uint[] prices) public payable {
         require(msg.sender.balance > msg.value);
-        require(skus.length > 0 && skus.length == quantities.length);
+        require(skus.length > 0 && skus.length == quantities.length && quantities.length == prices.length);
 
         uint totalPrice = 0;
         for (uint i = 0; i < skus.length; i++) {
@@ -78,6 +78,15 @@ contract Shop is owned {
 
         orderCount = orderCount + 1;
         orderList[orderCount] = Order(msg.sender, name, phone, city, skus, quantities, prices, totalPrice, now, false);
+        userOrders[msg.sender].push(orderCount);
+        orderIndex.push(orderCount);
+    }
+
+    function cashOnDelivery(string name, uint phone, string city, uint[] skus, uint[] quantities, uint[] prices) public {
+        require(skus.length > 0 && skus.length == quantities.length && quantities.length == prices.length);
+
+        orderCount = orderCount + 1;
+        orderList[orderCount] = Order(msg.sender, name, phone, city, skus, quantities, prices, 0, now, false);
         userOrders[msg.sender].push(orderCount);
         orderIndex.push(orderCount);
     }
