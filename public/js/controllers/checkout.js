@@ -33,9 +33,25 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
             return;
         }
 
-        var orderData = {};
+        var orderData = {
+            name: $scope.customer.name,
+            phone: $scope.customer.phone,
+            city: $scope.customer.city,
+            amount: $rootScope.shopping_cart.total_price,
+            skus: [],
+            quantities: [],
+            prices: []
+        };
 
-        App.placeOrder(orderData, function(result){
+        $rootScope.shopping_cart.cart_items.forEach(function (item) {
+            orderData.skus.push(item.sku);
+            orderData.quantities.push(item.quantity);
+            orderData.prices.push(item.price);
+        });
+
+        console.log(orderData);
+
+        App.placeOrder(orderData, function (result) {
             alert("Order Placed");
         });
     };

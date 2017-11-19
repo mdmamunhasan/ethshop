@@ -23,16 +23,16 @@ contract Shop is owned {
     uint orderCount = 0;
 
     struct Order {
-        address customer;
-        string name;
-        uint phone;
-        string city;
-        uint[] skus;
-        uint[] quantities;
-        uint[] prices;
-        uint totalPrice;
-        uint created;
-        bool isProcessed;
+    address customer;
+    string name;
+    uint phone;
+    string city;
+    uint[] skus;
+    uint[] quantities;
+    uint[] prices;
+    uint totalPrice;
+    uint created;
+    bool isProcessed;
     }
 
     mapping (uint => Order) public orderList;
@@ -66,7 +66,7 @@ contract Shop is owned {
 
         uint totalPrice = 0;
         for (uint i = 0; i < skus.length; i++) {
-            totalPrice += prices[i] * quantities[i];
+            totalPrice += prices[i];
         }
 
         require(msg.value == totalPrice);
