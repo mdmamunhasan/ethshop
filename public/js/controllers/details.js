@@ -1,4 +1,4 @@
-app.controller('detailsCtrl', function ($scope, $http, $location) {
+app.controller('detailsCtrl', function ($scope, $rootScope, $http, $location) {
     $scope.product = {};
 
     var productId = $location.absUrl().split('/')[5];
@@ -30,6 +30,18 @@ app.controller('detailsCtrl', function ($scope, $http, $location) {
 
     $scope.addToCart = function ($event) {
         $event.preventDefault();
+
+        var quantity = $('#quantity').val(),
+            price = $scope.product.price * quantity;
+
+        var cart_item = {
+            sku: $scope.product.sku,
+            quantity: quantity,
+            price: price
+        }
+
+        $rootScope.shopping_cart.total_price += price;
+        $rootScope.shopping_cart.cart_items.push(cart_item);
 
         alert('Product Added To Cart.');
     }
