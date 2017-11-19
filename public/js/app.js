@@ -35,17 +35,26 @@ App = {
             App.contracts.Shop = TruffleContract(ShopArtifact);
             // Set the provider for our contract.
             App.contracts.Shop.setProvider(App.web3Provider);
-            return callback();
+
+            web3.eth.getAccounts(function (error, accounts) {
+                if (error) {
+                    return console.log(error);
+                }
+
+                App.account = accounts[0];
+
+                return callback();
+            });
         });
     },
 
     placeOrder: function (orderData, callback) {
-        var journalInstance;
+        var shopInstance;
 
         App.contracts.Shop.deployed().then(function (instance) {
-            journalInstance = instance;
+            shopInstance = instance;
 
-            return journalInstance.checkout(
+            return shopInstance.checkout(
                 orderData.name,
                 orderData.phone,
                 orderData.city,
@@ -58,6 +67,69 @@ App = {
 
         }).then(function (result) {
             return callback(result);
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
+
+    getOrderData: function (orderId, callback) {
+        var shopInstance;
+
+        App.contracts.Shop.deployed().then(function (instance) {
+            shopInstance = instance;
+            return shopInstance.getOrder.call(orderId);
+        }).then(function (data) {
+            var orderData = {
+                customer: data[0],
+                name: data[1],
+                phone: data[2],
+                city: data[3],
+                skus: data[4],
+                quantities: data[5],
+                prices: data[6],
+                totalPrice: data[7],
+                created: data[8],
+                isProcessed: data[9]
+            };
+
+            return callback(orderData);
+
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
+
+    getOrderList: function (callback) {
+        var shopInstance;
+
+        App.contracts.shopInstance.deployed().then(function (instance) {
+            shopInstance = instance;
+            return shopInstance.getOrderIds.call();
+        }).then(function (data) {
+            return data.forEach(function (orderId) {
+                orderId = parseInt(orderId, 10);
+                if (orderId) {
+                    return getOrderData(orderId, callback);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
+
+    getUserOrderList: function (address, callback) {
+        var userAddress = address || App.account, shopInstance;
+
+        App.contracts.shopInstance.deployed().then(function (instance) {
+            shopInstance = instance;
+            return shopInstance.getUserOrderIds.call(userAddress);
+        }).then(function (data) {
+            return data.forEach(function (orderId) {
+                orderId = parseInt(orderId, 10);
+                if (orderId) {
+                    return getOrderData(orderId, callback);
+                }
+            });
         }).catch(function (err) {
             console.log(err.message);
         });

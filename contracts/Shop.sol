@@ -23,16 +23,16 @@ contract Shop is owned {
     uint orderCount = 0;
 
     struct Order {
-    address customer;
-    string name;
-    uint phone;
-    string city;
-    uint[] skus;
-    uint[] quantities;
-    uint[] prices;
-    uint totalPrice;
-    uint created;
-    bool isProcessed;
+        address customer;
+        string name;
+        uint phone;
+        string city;
+        uint[] skus;
+        uint[] quantities;
+        uint[] prices;
+        uint totalPrice;
+        uint created;
+        bool isProcessed;
     }
 
     mapping (uint => Order) public orderList;
@@ -53,7 +53,11 @@ contract Shop is owned {
 
     function getOrder(uint orderId) public constant returns (address, uint[], uint[], uint[], uint, uint) {
         Order storage order = orderList[orderId];
-        return (order.customer, order.skus, order.quantities, order.prices, order.totalPrice, order.created);
+        return (order.customer, order.name, order.phone, order.city, order.skus, order.quantities, order.prices, order.totalPrice, order.created, isProcessed);
+    }
+
+    function getOrderIds() public constant returns (uint[]) {
+        return orderIndex;
     }
 
     function getUserOrderIds(address userId) public constant returns (uint[]) {
