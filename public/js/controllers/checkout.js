@@ -11,6 +11,8 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
     };
 
     $scope.placeOrder = function ($event) {
+        $event.preventDefault();
+
         if ($scope.order.name == "") {
             alert("Name cannot be empty");
             return;
@@ -31,6 +33,6 @@ app.controller('checkoutCtrl', function ($scope, $rootScope) {
             return;
         }
 
-        $event.preventDefault();
+
     };
 });
