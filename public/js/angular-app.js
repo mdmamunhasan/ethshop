@@ -4,7 +4,7 @@ app.run(function ($rootScope, $http, $location) {
     $rootScope.site_title = "LUXURY WATCHES";
     $rootScope.shopping_cart = {
         total_price: 0,
-        cart_items: {}
+        cart_items: []
     };
 
     $rootScope.keyword = "";
