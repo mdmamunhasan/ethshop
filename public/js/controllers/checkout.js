@@ -9,4 +9,8 @@ app.controller('checkoutCtrl', function ($scope) {
 
         $(sibling).toggleClass('hide');
     };
+
+    $scope.placeOrder = function ($event) {
+        $event.preventDefault();
+    };
 });

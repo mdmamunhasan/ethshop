@@ -33,14 +33,14 @@
                 <li class="item2">
                     <a href="#" ng-click="togglePane($event)"><img src="images/arrow.png" alt="">Payment</a>
                     <ul class="hide">
-                        <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in
-                            vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
-                            at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-                            delenit augue duis dolore</a></li>
-                        <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc
-                            putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta
-                            decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant
-                            sollemnes </a></li>
+                        <li>
+                            <p>&nbsp;</p>
+                            <form ng-submit="placeOrder($event)">
+                                <div class="form-group">
+                                    <button type="submit" id="save_button" class="btn btn-primary">Place Order</button>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
