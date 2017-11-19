@@ -1712,6 +1712,9 @@ a.add-cart:hover {
 ul.menu_drop li.item1{
 	background:rgba(0, 0, 0, 0.78);
 }
+ul.menu_drop li.item1 ul li{
+	background:#FFF;
+}
 ul.menu_drop li.item1 img, ul.menu_drop li.item2 img, ul.menu_drop li.item3 img, ul.menu_drop li.item4 img, ul.menu_drop li.item5 img{
 	margin: -3px 10px 0 0;
 }

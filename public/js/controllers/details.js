@@ -36,6 +36,8 @@ app.controller('detailsCtrl', function ($scope, $rootScope, $http, $location) {
 
         var cart_item = {
             sku: $scope.product.sku,
+            title: $scope.product.title,
+            image: $scope.product.image,
             quantity: quantity,
             price: price
         }
