@@ -1,10 +1,8 @@
-app.controller('productsCtrl', function ($scope, $http) {
+app.controller('productsCtrl', function ($scope, $rootScope, $http) {
 
-    $scope.products = [];
-
-    $http.get("http://localhost:3000/api/products").then(function (response) {
+    $http.get("http://localhost:3000/api/products?q="+$rootScope.keyword).then(function (response) {
         if (response.data.status == 200) {
-            $scope.products = response.data.data;
+            $rootScope.products = response.data.data;
         }
         else {
             console.log(response.data);
