@@ -36,5 +36,29 @@ App = {
             App.contracts.Shop.setProvider(App.web3Provider);
             return callback();
         });
+    },
+
+    placeOrder: function (orderData, callback) {
+        var journalInstance;
+
+        App.contracts.Shop.deployed().then(function (instance) {
+            journalInstance = instance;
+
+            return journalInstance.checkout(
+                orderData.name,
+                orderData.phone,
+                orderData.city,
+                orderData.skus,
+                orderData.quantities,
+                orderData.prices, {
+                    value: web3.toWei(orderData.amount)
+                }
+            );
+
+        }).then(function (result) {
+            return callback(result);
+        }).catch(function (err) {
+            console.log(err.message);
+        });
     }
 )
