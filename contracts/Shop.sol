@@ -24,6 +24,9 @@ contract Shop is owned {
 
     struct Order {
         address customer;
+        string name;
+        uint phone;
+        string city;
         uint[] skus;
         uint[] quantities;
         uint[] prices;
@@ -44,7 +47,7 @@ contract Shop is owned {
         owner = msg.sender;
     }
 
-    function destructMe() onlyOwner {
+    function destructMe() onlyOwner public {
         selfdestruct(msg.sender);
     }
 
@@ -57,7 +60,7 @@ contract Shop is owned {
         return userOrders[userId];
     }
 
-    function checkout(uint[] skus, uint[] quantities, uint[] prices) public payable {
+    function checkout(string name, uint phone, string city, uint[] skus, uint[] quantities, uint[] prices) public payable {
         require(msg.sender.balance > msg.value);
         require(skus.length > 0 && skus.length == quantities.length);
 
@@ -70,7 +73,7 @@ contract Shop is owned {
         LogDep(msg.sender, msg.value, this.balance);
 
         orderCount = orderCount + 1;
-        orderList[orderCount] = Order(msg.sender, skus, quantities, prices, totalPrice, now, false);
+        orderList[orderCount] = Order(msg.sender, name, phone, city, skus, quantities, prices, totalPrice, now, false);
         userOrders[msg.sender].push(orderCount);
         orderIndex.push(orderCount);
     }
