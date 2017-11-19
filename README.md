@@ -28,7 +28,7 @@ Install nodejs 8+ and execute the command below
 
 To generate same addresses every time
 
-    testrpc -m "this govern write planet caught leopard require mother long file jazz absurd"
+    testrpc -m "this govern write planet caught leopard require mother long file jazz absurd" -l 4712388
     
 Add localhost:8545 to metamask network. Next, add a couple accounts to MetaMask. 
 
