@@ -1,4 +1,4 @@
-app.controller('ordersCtrl', function ($scope, $timeout) {
+app.controller('ordersCtrl', function ($scope, $timeout, $http) {
     $scope.isOwner = false;
     $scope.orderList = [];
 
@@ -48,15 +48,24 @@ app.controller('ordersCtrl', function ($scope, $timeout) {
     }, 1000);
 
     $scope.processOrder = function ($index, orderId) {
-        App.processOrder(orderId, function (result) {
-            var orderList = [];
-            for (var i = 0; i < $scope.orderList.length; i++) {
-                if (i != $index) {
-                    orderList.push($scope.orderList[i]);
-                }
+        $http.post('/api/process', {order_id: orderId, address: App.account}).then(function (data) {
+            if (data.status === 200) {
+                App.processOrder(orderId, function (result) {
+                    var orderList = [];
+                    for (var i = 0; i < $scope.orderList.length; i++) {
+                        if (i !== $index) {
+                            orderList.push($scope.orderList[i]);
+                        }
+                    }
+                    $scope.orderList = orderList;
+                    $scope.$applyAsync();
+                });
             }
-            $scope.orderList = orderList;
-            $scope.$applyAsync();
+            else {
+                console.log(data);
+            }
+        }, function (error) {
+            console.log(error);
         });
     };
 

@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <div class="col-md-12 content">
+        <h1>{{ title }}</h1>
+        <hr/>
+        <p>&nbsp</p>
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Order Id</th>
+                <th>Customer Address</th>
+                <th>Total Price</th>
+                <th>Process Date</th>
+                <th>Actions</th>
+            </tr>
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.order_id }}</td>
+                    <td>{{ sale.customer_id }}</td>
+                    <td>{{ sale.order_price }}</td>
+                    <td>{{ sale.created }}</td>
+                    <td>
+                        <a href="/sales/view/{{ sale.id|e }}">View</a>
+                        <a href="/sales/delete/{{ sale.id|e }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
