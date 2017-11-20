@@ -49,16 +49,21 @@ app.controller('ordersCtrl', function ($scope, $timeout, $http) {
 
     $scope.processOrder = function ($index, orderId) {
         $http.post('/api/process', {order_id: orderId, address: App.account}).then(function (data) {
-            App.processOrder(orderId, function (result) {
-                var orderList = [];
-                for (var i = 0; i < $scope.orderList.length; i++) {
-                    if (i != $index) {
-                        orderList.push($scope.orderList[i]);
+            if (data.status === 200) {
+                App.processOrder(orderId, function (result) {
+                    var orderList = [];
+                    for (var i = 0; i < $scope.orderList.length; i++) {
+                        if (i !== $index) {
+                            orderList.push($scope.orderList[i]);
+                        }
                     }
-                }
-                $scope.orderList = orderList;
-                $scope.$applyAsync();
-            });
+                    $scope.orderList = orderList;
+                    $scope.$applyAsync();
+                });
+            }
+            else {
+                console.log(data);
+            }
         }, function (error) {
             alert(error.message);
         });
