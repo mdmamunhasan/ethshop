@@ -1,16 +1,21 @@
 var express = require('express');
+var modelSale = require("../models/sales");
+
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('orders/index', { title: 'Orders' });
+    modelSale.all({}, function (result) {
+        if (result.status) {
+            res.render('sales/index', {title: 'Sales', sales: result.data});
+        }
+        else {
+            res.render('error', {title: 'Sales', message: result.data.message, error: result.data});
+        }
+    });
 });
 
-router.get('/view', function(req, res, next) {
-    res.render('orders/view', { title: 'Order Detail' });
-});
-
-router.post('/view', function(req, res, next) {
-    res.render('orders/view', { title: 'Order Detail' });
+router.get('/view/:id', function(req, res, next) {
+    res.render('sales/view', { title: 'Sale Detail' });
 });
 
 module.exports = router;

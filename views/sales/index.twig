@@ -4,25 +4,27 @@
     <div class="col-md-12 content">
         <h1>{{ title }}</h1>
         <hr/>
-        <a href="/products/add" class="btn btn-primary">Add New Product</a>
         <p>&nbsp</p>
         <table class="table table-bordered table-responsive">
             <tr>
-                <th>SKU</th>
-                <th>Thumbnail</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Created</th>
+                <th>Order Id</th>
+                <th>Customer Address</th>
+                <th>Total Price</th>
+                <th>Process Date</th>
+                <th>Actions</th>
             </tr>
-            <tr>
-                <td>SKU</td>
-                <td>Thumbnail</td>
-                <td>Title</td>
-                <td>Price</td>
-                <td>Stock</td>
-                <td>Created</td>
-            </tr>
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.order_id }}</td>
+                    <td>{{ sale.customer_id }}</td>
+                    <td>{{ sale.order_price }}</td>
+                    <td>{{ sale.created }}</td>
+                    <td>
+                        <a href="/sales/view/{{ sale.id|e }}">View</a>
+                        <a href="/sales/delete/{{ sale.id|e }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 {% endblock %}
