@@ -48,7 +48,7 @@ router.get('/product/:id', function (req, res, next) {
     });
 });
 
-router.get('/process', function (req, res, next) {
+router.post('/process', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     req.checkBody("address", "This field is required").notEmpty();
@@ -56,7 +56,7 @@ router.get('/process', function (req, res, next) {
 
     var errors = req.validationErrors();
     if (errors) {
-        return res.json({status: 404, data: errors});
+        return res.json({status: 400, data: errors});
     }
 
     var address = req.body.address,
@@ -69,7 +69,7 @@ router.get('/process', function (req, res, next) {
 
         var orderData = {
             order_id: order_id,
-            cutomer_id: data[0],
+            customer_id: data[0],
             order_price: parseInt(web3.utils.fromWei(data[7], 'ETHER'), 10)
         };
 

@@ -65,7 +65,7 @@ app.controller('ordersCtrl', function ($scope, $timeout, $http) {
                 console.log(data);
             }
         }, function (error) {
-            alert(error.message);
+            console.log(error);
         });
     };
 
