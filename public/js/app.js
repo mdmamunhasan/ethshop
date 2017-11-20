@@ -5,8 +5,8 @@ App = {
     constants: {
         ether: 0,
         ipfsBase: 'https://ipfs.io/ipfs/',
-        //httpProvider: 'http://34.195.183.184:8545',
-        httpProvider: 'http://localhost:8545',
+        httpProvider: 'http://34.195.183.184:8545',
+        //httpProvider: 'http://localhost:8545',
         noImage: 'images/no-image.gif'
     },
 
