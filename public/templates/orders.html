@@ -35,6 +35,9 @@
                             <td>Eth {{productItem.price}}</td>
                         </tr>
                     </table>
+                    <button class="btn btn-success pull-right" ng-click="processOrder($event,orderItem.orderId)">
+                        Process Order
+                    </button>
                 </td>
             </tr>
             </tbody>

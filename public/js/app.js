@@ -129,7 +129,7 @@ App = {
             return data.forEach(function (orderId) {
                 orderId = parseInt(orderId, 10);
                 if (orderId) {
-                    return getOrderData(orderId, callback);
+                    return App.getOrderData(orderId, callback);
                 }
             });
         }).catch(function (err) {
