@@ -11,7 +11,7 @@ var expressValidator = require('express-validator');
 
 var api = require('./routes/api');
 var index = require('./routes/index');
-var orders = require('./routes/orders');
+var sales = require('./routes/sales');
 var products = require('./routes/products');
 
 var app = express();
@@ -37,14 +37,14 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 // restricted area
-var restricted_area = ['/products', '/products/*', '/orders', '/orders/*'];
+var restricted_area = ['/products', '/products/*', '/sales', '/sales/*'];
 app.all(restricted_area, ensureLoggedIn, function (req, res, next) {
     next();
 });
 
 app.use('/', index);
 app.use('/api', api);
-app.use('/orders', orders);
+app.use('/sales', sales);
 app.use('/products', products);
 
 // catch 404 and forward to error handler

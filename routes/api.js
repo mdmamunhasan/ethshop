@@ -7,6 +7,7 @@ const modelSales = require("../models/sales");
 
 const router = express.Router();
 const rpc_addr = process.env.RPC_ADDR || "http://localhost:8545";
+const contract_addr = '0xf8e1d6a5d062f22e955322f7f78103881cfcac78';
 
 var web3 = new Web3(new Web3.providers.HttpProvider(rpc_addr));
 console.log(rpc_addr);
@@ -17,7 +18,7 @@ fs.readFile(__dirname + '/../contracts/build/Shop.abi', function (err, file_data
         console.log(err);
         return;
     }
-    shopContract = new web3.eth.Contract(JSON.parse(file_data.toString()), config.contract);
+    shopContract = new web3.eth.Contract(JSON.parse(file_data.toString()), contract_addr);
 });
 
 router.get('/products', function (req, res, next) {
