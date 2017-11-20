@@ -119,6 +119,23 @@ App = {
         });
     },
 
+    getUserOrderList: function (address, callback) {
+        var userAddress = address || App.account, shopInstance;
+        App.contracts.Shop.deployed().then(function (instance) {
+            shopInstance = instance;
+            return shopInstance.getUserOrderIds.call(userAddress);
+        }).then(function (data) {
+            data.forEach(function (orderId) {
+                orderId = parseInt(orderId, 10);
+                if (orderId) {
+                    return App.getOrderData(orderId, callback);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
+
     getOrderList: function (callback) {
         var shopInstance;
 
@@ -137,18 +154,14 @@ App = {
         });
     },
 
-    getUserOrderList: function (address, callback) {
-        var userAddress = address || App.account, shopInstance;
+    processOrder: function (orderId, callback) {
+        var shopInstance;
+
         App.contracts.Shop.deployed().then(function (instance) {
             shopInstance = instance;
-            return shopInstance.getUserOrderIds.call(userAddress);
-        }).then(function (data) {
-            data.forEach(function (orderId) {
-                orderId = parseInt(orderId, 10);
-                if (orderId) {
-                    return App.getOrderData(orderId, callback);
-                }
-            });
+            return shopInstance.processOrder(orderId);
+        }).then(function (result) {
+            return callback(result);
         }).catch(function (err) {
             console.log(err.message);
         });

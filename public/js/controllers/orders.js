@@ -48,14 +48,16 @@ app.controller('ordersCtrl', function ($scope, $timeout) {
     }, 1000);
 
     $scope.processOrder = function ($index, orderId) {
-        var orderList = [];
-        for(var i=0; i<$scope.orderList.length;i++){
-            if(i != $index){
-                orderList.push($scope.orderList[i]);
+        App.processOrder(orderId, function (result) {
+            var orderList = [];
+            for (var i = 0; i < $scope.orderList.length; i++) {
+                if (i != $index) {
+                    orderList.push($scope.orderList[i]);
+                }
             }
-        }
-        $scope.orderList = orderList;
-        console.log($scope.orderList);
+            $scope.orderList = orderList;
+            $scope.$applyAsync();
+        });
     };
 
 });
