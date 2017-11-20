@@ -11,13 +11,13 @@ const rpc_addr = process.env.RPC_ADDR || "http://localhost:8545";
 var web3 = new Web3(new Web3.providers.HttpProvider(rpc_addr));
 console.log(rpc_addr);
 
-var jContract = null;
+var shopContract = null;
 fs.readFile(__dirname + '/../contracts/build/Shop.abi', function (err, file_data) {
     if (err) {
         console.log(err);
         return;
     }
-    jContract = new web3.eth.Contract(JSON.parse(file_data.toString()), config.contract);
+    shopContract = new web3.eth.Contract(JSON.parse(file_data.toString()), config.contract);
 });
 
 router.get('/products', function (req, res, next) {
@@ -47,34 +47,39 @@ router.get('/product/:id', function (req, res, next) {
     });
 });
 
-router.post('/order/:id', function (req, res, next) {
+router.get('/process', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
+    req.checkBody("address", "This field is required").notEmpty();
     req.checkBody("order_id", "This field is required").notEmpty();
 
     var errors = req.validationErrors();
     if (errors) {
-        res.render('products/form', {title: 'Add Product', error: errors, action: 'add'});
+        return res.json({status: 404, data: errors});
     }
 
-    var data = {
-        title: req.body.title,
-        sku: req.body.sku,
-        details: req.body.details,
-        price: req.body.price,
-        stock: req.body.stock,
-        brand: req.body.brand,
-        category: req.body.category,
-        is_published: (req.body.is_published) ? 1 : 0
-    }
+    var address = req.body.address,
+        order_id = req.body.order_id;
 
-    modelSales.save(req.params.id, function (result) {
-        if (result.status) {
-            return res.json({status: 200, data: result.data});
+    shopContract.methods.getOrder(order_id).call({from: address}, function (error, response) {
+        if (error) {
+            return res.json({status: 205, msg: error.message});
         }
-        else {
-            return res.json({status: 205, data: result.data});
+
+        var params = {
+            order_id: order_id,
+            cutomer_id: response.customer,
+            order_price: response.total_price
         }
+
+        modelSales.save(data, function (result) {
+            if (result.status) {
+                return res.json({status: 200, data: result.data});
+            }
+            else {
+                return res.json({status: 205, data: result.data});
+            }
+        });
     });
 });
 
