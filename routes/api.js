@@ -61,18 +61,20 @@ router.get('/process', function (req, res, next) {
     var address = req.body.address,
         order_id = req.body.order_id;
 
-    shopContract.methods.getOrder(order_id).call({from: address}, function (error, response) {
+    shopContract.methods.getOrder(order_id).call({from: address}, function (error, data) {
         if (error) {
             return res.json({status: 205, msg: error.message});
         }
 
-        var data = {
-            order_id: order_id,
-            cutomer_id: response.customer,
-            order_price: response.total_price
-        }
+        var isProcessed = data[9];
 
-        modelSales.save(data, function (result) {
+        var orderData = {
+            order_id: order_id,
+            cutomer_id: data[0],
+            order_price: parseInt(web3.utils.fromWei(data[7], 'ETHER'), 10)
+        };
+
+        modelSales.save(orderData, function (result) {
             if (result.status) {
                 return res.json({status: 200, data: result.data});
             }
