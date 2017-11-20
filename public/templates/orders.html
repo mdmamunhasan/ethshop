@@ -1,18 +1,18 @@
 <div class="contact" ng-controller="ordersCtrl">
     <div class="container">
-        <p>Address: {{userAddress}}</p>
-        <table class="table table-bordered table-responsive">
+        <h4>Address: <span>{{userAddress}}</span></h4>
+        <table class="table table-bordered table-bordered" style="table-layout: fixed;">
             <tr>
                 <th>OrderId</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>City</th>
-                <th>Total Price</th>
+                <th style="width:100px">Total Price</th>
                 <th>Created</th>
                 <th>isProcessed</th>
             </tr>
             <tbody ng-repeat="orderItem in orderList">
-            <tr onclick="$(this).next().toggle()" style="cursor: pointer">
+            <tr onclick="$(this).next().toggleClass('hide')" style="cursor: pointer">
                 <td>{{orderItem.orderId}}</td>
                 <td>{{orderItem.name}}</td>
                 <td>{{orderItem.phone}}</td>
@@ -21,13 +21,13 @@
                 <td>{{orderItem.created}}</td>
                 <td>{{orderItem.isProcessed}}</td>
             </tr>
-            <tr style="background-color: #F5F5F5">
+            <tr class="hide" style="background-color: #F5F5F5">
                 <td colspan="7">
-                    <table class="table table-bordered table-responsive">
+                    <table class="table table-bordered table-responsive" style="table-layout: fixed;">
                         <tr>
                             <th>SKU</th>
                             <th>Quantity</th>
-                            <th>Price</th>
+                            <th style="width:30%">Price</th>
                         </tr>
                         <tr ng-repeat="productItem in orderItem.productList">
                             <td>{{productItem.sku}}</td>
