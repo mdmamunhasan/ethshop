@@ -1,0 +1,22 @@
+{
+  "0xf44cf64f2cb6381e260355d6d44c2b09a82c488b": {
+    "password": "123456789",
+    "privateKey": "0xe2ffcb40c74adbd02bcf8484817c8bae9691819a052d2a7105bc7c12bb196932"
+  },
+  "0xe2331f931fd65388d6bff717b9aacccf0e400b45": {
+    "password": "123456789",
+    "privateKey": "0x80a93e3d9d0c468df429bbef8d45ebf6c07d796c69dc84ed778c91f54cd1a087"
+  },
+  "0xd0612efd9c7410fb73d5ce3d530a896c5428e31a": {
+    "password": "12345678",
+    "privateKey": "0x5ec574d156e7b9eee4e0cdb871f78ab32d5b6e98368cb6cf7cea49f3f3348271"
+  },
+  "0x4d60895f05d587df75dcacc74ff598bb93d23830": {
+    "password": "123456789",
+    "privateKey": "0x413c6995a027664094dfbde44dcfd613227b38a59d2bd226171a125785c31e24"
+  },
+  "0x7e7034bb21709dd9dba6a19c7549adcb95af8a34": {
+    "password": "123456789",
+    "privateKey": "0xe9a766e9f2cd7dcdb084ab1fb389f83bedd1d9a64f908e60ca3ed021a654bdcb"
+  }
+}

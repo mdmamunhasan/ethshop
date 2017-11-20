@@ -14,7 +14,7 @@ app.run(function ($rootScope, $http, $location) {
     $rootScope.products = [];
 
     $rootScope.getProducts = function () {
-        $http.get("http://localhost:3000/api/products?q=" + $rootScope.keyword).then(function (response) {
+        $http.get("/api/products?q=" + $rootScope.keyword).then(function (response) {
             if (response.data.status == 200) {
                 $rootScope.products = response.data.data;
             }
