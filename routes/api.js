@@ -66,7 +66,7 @@ router.get('/process', function (req, res, next) {
             return res.json({status: 205, msg: error.message});
         }
 
-        var params = {
+        var data = {
             order_id: order_id,
             cutomer_id: response.customer,
             order_price: response.total_price
