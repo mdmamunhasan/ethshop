@@ -1,9 +1,5 @@
 var app = angular.module("myApp", ["ngRoute"]);
 app.run(function ($rootScope, $http, $location) {
-    App.init(function(){
-        console.log("Web3 Initialized");
-    });
-
     $rootScope.site_title = "LUXURY WATCHES";
     $rootScope.shopping_cart = {
         total_price: 0,
@@ -12,6 +8,15 @@ app.run(function ($rootScope, $http, $location) {
 
     $rootScope.keyword = "";
     $rootScope.products = [];
+
+    $rootScope.userAddress = '';
+    $rootScope.ownerAddress = '';
+
+    App.init(function () {
+        $rootScope.userAddress = App.account;
+        $rootScope.ownerAddress = App.owner;
+        console.log("Contract Owner: " + App.owner);
+    });
 
     $rootScope.getProducts = function () {
         $http.get("http://localhost:3000/api/products?q=" + $rootScope.keyword).then(function (response) {

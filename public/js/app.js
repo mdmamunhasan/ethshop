@@ -1,6 +1,7 @@
 App = {
     web3Provider: null,
     account: null,
+    owner: null,
     contracts: {},
     constants: {
         ether: 0,
@@ -36,14 +37,31 @@ App = {
             // Set the provider for our contract.
             App.contracts.Shop.setProvider(App.web3Provider);
 
-            web3.eth.getAccounts(function (error, accounts) {
-                if (error) {
-                    return console.log(error);
-                }
+            return App.getInitialData(callback);
+        });
+    },
 
-                App.account = accounts[0];
+    getInitialData: function (callback) {
+        web3.eth.getAccounts(function (error, accounts) {
+            if (error) {
+                return console.log(error);
+            }
+
+            App.account = accounts[0];
+
+            var shopInstance;
+
+            App.contracts.Shop.deployed().then(function (instance) {
+                shopInstance = instance;
+                return shopInstance.getOwner.call();
+            }).then(function (data) {
+
+                App.owner = data;
 
                 return callback();
+
+            }).catch(function (err) {
+                console.log(err.message);
             });
         });
     },
