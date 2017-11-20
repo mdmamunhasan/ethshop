@@ -66,11 +66,6 @@ router.get('/process', function (req, res, next) {
             return res.json({status: 205, msg: error.message});
         }
 
-        var isProcessed = data[9];
-        if (!isProcessed) {
-            return res.json({status: 403, msg: "Order not processed yet!"});
-        }
-
         var orderData = {
             order_id: order_id,
             cutomer_id: data[0],
