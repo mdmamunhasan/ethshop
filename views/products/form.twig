@@ -124,7 +124,9 @@
                 <div class="form-group">
                     <label>Feature Image</label>
                     <input id="image_chooser" type="file"/>
-                    <input type="hidden" id="input_image" name="image"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="input_image" name="image" value="{{ product.image }}"/>
                 </div>
                 <div class="thumbnail">
                     {% if product.image|e != null %}

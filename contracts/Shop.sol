@@ -43,12 +43,16 @@ contract Shop is owned {
 
     event LogDep (address sender, uint amount, uint balance);
 
-    function Migrate() public {
+    function Shop() public {
         owner = msg.sender;
     }
 
     function destructMe() onlyOwner public {
         selfdestruct(msg.sender);
+    }
+
+    function getOwner() public constant returns (address) {
+        return owner;
     }
 
     function getOrder(uint orderId) public constant returns (address, string, uint, string, uint[], uint[], uint[], uint, uint, bool) {
@@ -78,15 +82,6 @@ contract Shop is owned {
 
         orderCount = orderCount + 1;
         orderList[orderCount] = Order(msg.sender, name, phone, city, skus, quantities, prices, totalPrice, now, false);
-        userOrders[msg.sender].push(orderCount);
-        orderIndex.push(orderCount);
-    }
-
-    function cashOnDelivery(string name, uint phone, string city, uint[] skus, uint[] quantities, uint[] prices) public {
-        require(skus.length > 0 && skus.length == quantities.length && quantities.length == prices.length);
-
-        orderCount = orderCount + 1;
-        orderList[orderCount] = Order(msg.sender, name, phone, city, skus, quantities, prices, 0, now, false);
         userOrders[msg.sender].push(orderCount);
         orderIndex.push(orderCount);
     }

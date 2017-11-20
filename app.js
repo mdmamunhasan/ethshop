@@ -37,7 +37,7 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 // restricted area
-var restricted_area = ['/products/*', '/orders/*'];
+var restricted_area = ['/products', '/products/*', '/orders', '/orders/*'];
 app.all(restricted_area, ensureLoggedIn, function (req, res, next) {
     next();
 });
