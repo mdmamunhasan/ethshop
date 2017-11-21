@@ -4,8 +4,9 @@
             <div class="product-one">
                 <div class="col-md-3 product-left" ng-repeat="product in products">
                     <div class="product-main simpleCart_shelfItem">
-                        <a href="#!details/{{product.id}}" class="mask"><img class="img-responsive zoom-img" src="{{product.image}}"
-                                                                alt=""/></a>
+                        <a href="#!details/{{product.id}}" class="mask">
+                            <img class="img-responsive zoom-img" src="/images/p-{{$index + 1}}.png" alt=""/>
+                        </a>
                         <div class="product-bottom">
                             <h3>{{product.title}}</h3>
                             <p>Explore Now</p>
