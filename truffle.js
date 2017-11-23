@@ -10,7 +10,7 @@ module.exports = {
             network_id: "*"
         },
         production: {
-            host: "34.195.183.184",
+            host: "localhost",
             port: 8545,
             //from: "0xf44cf64f2cb6381e260355d6d44c2b09a82c488b",
             //gas: 4712388,

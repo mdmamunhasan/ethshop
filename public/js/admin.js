@@ -19,7 +19,7 @@ function handleFileUpload() {
     $('#save_button').attr('disabled', 'disabled');
     const reader = new FileReader();
     reader.onloadend = function () {
-        const ipfs = window.IpfsApi('34.195.183.184', 5001); // Connect to IPFS 34.195.183.184
+        const ipfs = window.IpfsApi('localhost', 5001); // Connect to IPFS localhost
         const buf = buffer.Buffer(reader.result); // Convert data into buffer
         ipfs.files.add(buf, function (err, result) { // Upload buffer to IPFS
             if (err) {

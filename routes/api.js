@@ -6,7 +6,7 @@ const modelProduct = require("../models/products");
 const modelSales = require("../models/sales");
 
 const router = express.Router();
-const rpc_addr = process.env.RPC_ADDR || "http://34.195.183.184:8545";
+const rpc_addr = process.env.RPC_ADDR || "http://localhost:8545";
 const contract_addr = '0x2f69271c952a1bd23177eeaacf4f2839b10a7c6e';
 
 var web3 = new Web3(new Web3.providers.HttpProvider(rpc_addr));
